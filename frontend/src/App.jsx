@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import BroadcastForm from './components/forms/BroadcastForm';
 import Login from './pages/Login';
-import Register from './pages/Register';
 import './App.css';
 
 // Protected Route component
@@ -19,9 +18,8 @@ function App() {
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Routes>
-          {/* Public Routes */}
+          {/* Only Login Route - Register is now inside Login */}
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
           
           {/* Protected Routes */}
           <Route path="/" element={
