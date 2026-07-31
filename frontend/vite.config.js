@@ -4,21 +4,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,
-    proxy: {
-      '/api': {
-        target: 'https://school-sms-backend.onrender.com',
-        changeOrigin: true
-      }
-    }
+    port: 5173
   },
   build: {
     outDir: 'dist',
-    emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined
-      }
-    }
-  }
+    emptyOutDir: true
+  },
+  publicDir: 'public'
 })

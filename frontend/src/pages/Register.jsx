@@ -26,7 +26,6 @@ const Register = () => {
     setError('');
     setSuccess('');
 
-    // Validate
     if (!formData.name || !formData.email || !formData.password) {
       setError('Please fill in all fields');
       return;
