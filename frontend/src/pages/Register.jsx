@@ -66,24 +66,20 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl">
-        <div>
-          <h2 className="text-center text-3xl font-bold text-gray-900">
-            Create Account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Register as a teacher or staff member
-          </p>
+      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
+          <p className="mt-2 text-sm text-gray-600">Register as a teacher or staff member</p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+          <div className="mt-4 bg-red-50 border-l-4 border-red-500 p-4 rounded">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}
 
         {success && (
-          <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+          <div className="mt-4 bg-green-50 border-l-4 border-green-500 p-4 rounded">
             <p className="text-green-700 text-sm">{success}</p>
           </div>
         )}
@@ -91,9 +87,7 @@ const Register = () => {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Full Name</label>
               <input
                 type="text"
                 name="name"
@@ -104,11 +98,8 @@ const Register = () => {
                 placeholder="John Doe"
               />
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Email Address</label>
               <input
                 type="email"
                 name="email"
@@ -119,11 +110,8 @@ const Register = () => {
                 placeholder="you@school.com"
               />
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Password</label>
               <input
                 type="password"
                 name="password"
@@ -134,11 +122,8 @@ const Register = () => {
                 placeholder="Min 6 characters"
               />
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Confirm Password
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
               <input
                 type="password"
                 name="confirmPassword"
@@ -160,16 +145,12 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Login Link at Bottom */}
-        <div className="text-center pt-4 border-t border-gray-200">
+        <div className="mt-6 pt-6 border-t border-gray-200 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-600 hover:text-blue-800 font-medium hover:underline">
+            <Link to="/login" className="text-blue-600 hover:text-blue-800 font-semibold hover:underline">
               Sign In
             </Link>
-          </p>
-          <p className="text-xs text-gray-400 mt-2">
-            Return to login page
           </p>
         </div>
       </div>
