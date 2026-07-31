@@ -9,7 +9,7 @@ exports.authenticate = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ 
         success: false,
-        message: 'Authentication required. Please provide a valid token.' 
+        message: 'Authentication required'
       });
     }
 
@@ -22,38 +22,13 @@ exports.authenticate = async (req, res, next) => {
       }
     }
 
-    let decoded;
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (jwtError) {
-      if (jwtError.name === 'TokenExpiredError') {
-        return res.status(401).json({ 
-          success: false,
-          message: 'Token has expired. Please login again.' 
-        });
-      }
-      if (jwtError.name === 'JsonWebTokenError') {
-        return res.status(401).json({ 
-          success: false,
-          message: 'Invalid token. Please login again.' 
-        });
-      }
-      throw jwtError;
-    }
-
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.userId);
     
-    if (!user) {
-      return res.status(401).json({ 
+    if (!user || !user.isActive) {
+      return res.status(401).json({
         success: false,
-        message: 'User not found. Please login again.' 
-      });
-    }
-
-    if (!user.isActive) {
-      return res.status(401).json({ 
-        success: false,
-        message: 'Account is deactivated. Please contact administrator.' 
+        message: 'User not found'
       });
     }
 
@@ -62,50 +37,17 @@ exports.authenticate = async (req, res, next) => {
     next();
 
   } catch (error) {
-    console.error('Authentication error:', error);
-    return res.status(500).json({ 
+    return res.status(401).json({
       success: false,
-      message: 'Authentication failed due to server error.' 
+      message: 'Invalid token'
     });
   }
 };
 
-exports.authorize = (...roles) => {
-  return (req, res, next) => {
-    if (!req.user) {
-      return res.status(401).json({ 
-        success: false,
-        message: 'Authentication required before authorization.' 
-      });
-    }
-
-    if (!roles.includes(req.user.role)) {
-      return res.status(403).json({ 
-        success: false,
-        message: `Access denied. Required roles: ${roles.join(', ')}` 
-      });
-    }
-
-    next();
-  };
-};
-
 exports.generateToken = (user) => {
   return jwt.sign(
-    { 
-      userId: user._id,
-      email: user.email,
-      role: user.role
-    },
+    { userId: user._id, email: user.email, role: user.role },
     process.env.JWT_SECRET,
     { expiresIn: '7d' }
   );
-};
-
-exports.verifyToken = (token) => {
-  try {
-    return jwt.verify(token, process.env.JWT_SECRET);
-  } catch (error) {
-    return null;
-  }
 };
