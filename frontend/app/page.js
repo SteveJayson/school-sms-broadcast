@@ -1,35 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import BroadcastForm from '../components/forms/BroadcastForm';
 
 export default function HomePage() {
   const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       router.push('/login');
-    } else {
-      setIsAuthenticated(true);
     }
-    setLoading(false);
   }, [router]);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return null;
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -55,7 +37,7 @@ export default function HomePage() {
               <button
                 onClick={() => {
                   localStorage.removeItem('token');
-                  router.push('/login');
+                  window.location.href = '/login';
                 }}
                 className="text-white hover:text-gray-200 text-sm font-medium"
               >
@@ -66,7 +48,12 @@ export default function HomePage() {
         </div>
       </header>
       <main className="py-8">
-        <BroadcastForm />
+        <div className="max-w-4xl mx-auto p-6">
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <h1 className="text-3xl font-bold text-gray-800">Welcome to School SMS Broadcast</h1>
+            <p className="mt-4 text-gray-600">You are logged in! The dashboard will be available soon.</p>
+          </div>
+        </div>
       </main>
       <footer className="text-center py-4 text-sm text-gray-400 border-t border-gray-200/50 mt-8">
         <p>© 2024 School SMS Broadcast System • Built with ❤️</p>
