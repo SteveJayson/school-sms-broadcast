@@ -24,12 +24,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  background: #3b82f6;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to right, #2563eb, #7c3aed);
+  background: #2563eb;
 }
 
 ::selection {
@@ -38,7 +38,6 @@ html {
 }
 
 *:focus-visible {
-  outline: none;
-  ring: 2px solid #3b82f6;
-  ring-offset: 2px;
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
