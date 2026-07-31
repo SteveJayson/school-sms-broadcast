@@ -2,7 +2,11 @@ services:
   - type: web
     name: school-sms-frontend
     env: static
-    buildCommand: cd frontend && npm install && npm run build
+    buildCommand: |
+      cd frontend
+      npm install
+      npm run build
+      cp public/_redirects dist/
     staticPublishPath: frontend/dist
     routes:
       - type: rewrite

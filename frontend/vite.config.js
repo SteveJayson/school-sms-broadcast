@@ -11,8 +11,11 @@ export default defineConfig({
       output: {
         manualChunks: undefined
       }
-    }
+    },
+    // Copy _redirects to build
+    outDir: 'dist',
+    emptyOutDir: true
   },
-  // This ensures the _redirects file is copied to build
+  // Move _redirects to dist
   publicDir: 'public'
 })
