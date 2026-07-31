@@ -11,7 +11,6 @@ const sectionRoutes = require('./routes/sectionRoutes');
 const templateRoutes = require('./routes/templateRoutes');
 const broadcastRoutes = require('./routes/broadcastRoutes');
 
-// Create app FIRST
 const app = express();
 
 // CORS configuration
@@ -22,13 +21,29 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-// Middleware - AFTER app is created
+// Middleware
 app.use(helmet());
 app.use(cors(corsOptions));
 app.use(compression());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    message: 'School SMS Broadcast API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/health',
+      sections: '/api/sections',
+      templates: '/api/templates',
+      broadcasts: '/api/broadcasts',
+      auth: '/api/auth'
+    }
+  });
+});
 
 // Health check route
 app.get('/health', (req, res) => {
@@ -50,9 +65,12 @@ app.use('/api/sections', sectionRoutes);
 app.use('/api/templates', templateRoutes);
 app.use('/api/broadcasts', broadcastRoutes);
 
-// 404 handler
+// 404 handler - MUST be at the end
 app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
+  res.status(404).json({ 
+    message: 'Route not found',
+    path: req.originalUrl
+  });
 });
 
 // Error handling middleware
