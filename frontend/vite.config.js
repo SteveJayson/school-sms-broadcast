@@ -12,5 +12,7 @@ export default defineConfig({
         manualChunks: undefined
       }
     }
-  }
+  },
+  // This ensures the _redirects file is copied to build
+  publicDir: 'public'
 })
