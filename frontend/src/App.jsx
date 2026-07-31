@@ -19,8 +19,11 @@ function App() {
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Routes>
+          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
+          {/* Protected Routes */}
           <Route path="/" element={
             <ProtectedRoute>
               <>
