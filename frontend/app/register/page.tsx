@@ -15,7 +15,7 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess('');

@@ -1,17 +1,28 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function HomePage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       router.push('/login');
+    } else {
+      setLoading(false);
     }
   }, [router]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-gray-500">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -37,7 +48,7 @@ export default function HomePage() {
               <button
                 onClick={() => {
                   localStorage.removeItem('token');
-                  window.location.href = '/login';
+                  router.push('/login');
                 }}
                 className="text-white hover:text-gray-200 text-sm font-medium"
               >
