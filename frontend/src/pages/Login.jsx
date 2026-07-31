@@ -84,16 +84,20 @@ const Login = () => {
           >
             {loading ? 'Signing in...' : 'Sign In →'}
           </button>
-
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link to="/register" className="text-blue-600 hover:text-blue-800 font-medium">
-                Register here
-              </Link>
-            </p>
-          </div>
         </form>
+
+        {/* Register Link at Bottom */}
+        <div className="text-center pt-4 border-t border-gray-200">
+          <p className="text-sm text-gray-600">
+            Don't have an account?{' '}
+            <Link to="/register" className="text-blue-600 hover:text-blue-800 font-medium hover:underline">
+              Register here
+            </Link>
+          </p>
+          <p className="text-xs text-gray-400 mt-2">
+            Create a teacher or staff account
+          </p>
+        </div>
       </div>
     </div>
   );
