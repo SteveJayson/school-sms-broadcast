@@ -4,6 +4,7 @@ npm-debug.log
 yarn-debug.log
 yarn-error.log
 package-lock.json
+package-lock.json
 
 # Environment variables
 .env
@@ -36,3 +37,36 @@ logs/
 # OS
 Thumbs.db
 Desktop.ini
+
+# Redirects (no longer needed)
+_redirects
+
+# Render (deployment files)
+render.yaml
+
+# Backend specific
+backend/node_modules/
+backend/.env
+backend/package-lock.json
+
+# Frontend specific
+frontend/node_modules/
+frontend/.env
+frontend/.env.production
+frontend/package-lock.json
+frontend/dist/
+frontend/build/
+
+# MongoDB
+*.mongodb
+dump/
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
