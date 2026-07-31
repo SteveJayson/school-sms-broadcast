@@ -30,22 +30,25 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl">
-        <div>
-          <h2 className="text-center text-3xl font-bold text-gray-900">
+      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl">
+        {/* Header */}
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-900">
             Welcome Back
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Sign in to access your administrative dashboard
+          <p className="mt-2 text-sm text-gray-600">
+            Please sign in to access your administrative dashboard.
           </p>
         </div>
 
+        {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+          <div className="mt-4 bg-red-50 border-l-4 border-red-500 p-4 rounded">
             <p className="text-red-700 text-sm">{error}</p>
           </div>
         )}
 
+        {/* Login Form */}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
@@ -82,20 +85,35 @@ const Login = () => {
             disabled={loading}
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-blue-500/50 disabled:opacity-50 transition-all font-semibold"
           >
-            {loading ? 'Signing in...' : 'Sign In →'}
+            {loading ? 'Signing in...' : 'Sign In to Portal →'}
           </button>
         </form>
 
-        {/* Register Link at Bottom */}
-        <div className="text-center pt-4 border-t border-gray-200">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-blue-600 hover:text-blue-800 font-medium hover:underline">
-              Register here
-            </Link>
-          </p>
-          <p className="text-xs text-gray-400 mt-2">
-            Create a teacher or staff account
+        {/* 🔴 REGISTER LINK - This is what you're missing */}
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <div className="text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{' '}
+              <Link 
+                to="/register" 
+                className="text-blue-600 hover:text-blue-800 font-semibold hover:underline"
+              >
+                Register here
+              </Link>
+            </p>
+            <p className="text-xs text-gray-400 mt-1">
+              Create a teacher or staff account
+            </p>
+          </div>
+        </div>
+
+        {/* School Management System Footer */}
+        <div className="mt-8 pt-6 border-t border-gray-200">
+          <h3 className="text-center text-sm font-semibold text-gray-700">
+            SCHOOL MANAGEMENT SYSTEM
+          </h3>
+          <p className="text-center text-xs text-gray-500 mt-2">
+            Shaping Tomorrow's Leaders, Today.
           </p>
         </div>
       </div>
